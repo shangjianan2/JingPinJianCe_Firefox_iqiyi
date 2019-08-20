@@ -57,7 +57,6 @@ print("waiting for the advertising\r\n")
 time.sleep(40)
 print("advertising is over\r\n")
 
-driver.save_screenshot('error.png')
 test_play = video_play_aiqiyi(driver)
 test_play.play(video_def)
 

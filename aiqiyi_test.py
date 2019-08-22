@@ -10,14 +10,6 @@ import time
 import json
 from video_play_aiqiyi import *
 
-def t2s(t):
-    if(str(t).count(":") == 2):
-        h,m,s = t.strip().split(":")
-        return int(h) * 3600 + int(m) * 60 + int(s)
-    else:
-        m,s = t.strip().split(":")
-        return int(m) * 60 + int(s)
-
 url = input("url: ")
 print("please choose definition: 1 1080pClient, 2 1080p, 3 720p, 4 GaoQing, 5 LiuChang, 6 JiSu")
 qixidu = input("please input the num: ")
@@ -60,12 +52,12 @@ print("advertising is over\r\n")
 test_play = video_play_aiqiyi(driver)
 test_play.play(video_def)
 
-time.sleep(10)
-during_second = t2s(driver.find_element_by_xpath('/html/body/div[1]/div/div/div/div/div/div[1]/iqpdiv/iqpdiv[1]/iqpdiv[2]/iqpdiv/iqpdiv[4]/iqpdiv[1]/iqpdiv[2]/iqpspan[3]').get_attribute('textContent'))
-print("the total time is %d second" % (during_second))
 print("the video is playing......\r\n")
 
-time.sleep(during_second - 20)
+url_now = driver.current_url
+while(url_now == driver.current_url):
+    time.sleep(1)
+
 driver.save_screenshot('aiqiyi_test.png')
 
 driver.close()
